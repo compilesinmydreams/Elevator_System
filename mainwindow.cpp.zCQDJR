@@ -1,0 +1,79 @@
+#include<iostream>
+#include "mainwindow.h"
+#include "ui_mainwindow.h"
+#include "ElevatorControlSystem.h"
+#include "Doors.h"
+
+
+using namespace std;
+
+MainWindow::MainWindow(QWidget *parent)
+    : QMainWindow(parent)
+    , ui(new Ui::MainWindow),
+      elevatorControlSystem()
+{
+    ui->setupUi(this);
+
+}
+
+MainWindow::~MainWindow()
+{
+    delete ui;
+
+}
+
+
+void MainWindow::on_pushButton_13_clicked()
+{
+    elevatorControlSystem.sendEmergencyCalls(EmergencyType::FIRE,ui->label_3);
+    //cout << "Emergency button clicked. Sending FIRE emergency call!\n"<<endl;
+}
+
+
+
+void MainWindow::on_pushButton_15_clicked()
+{
+    elevatorControlSystem.sendEmergencyCalls(EmergencyType::OVERLOAD,ui->label_3);
+    //cout << "Emergency button clicked. Sending overload emergency call!\n"<<endl;
+}
+
+
+void MainWindow::on_pushButton_14_clicked()
+{
+    elevatorControlSystem.sendEmergencyCalls(EmergencyType::POWER_OUT,ui->label_3);
+    //cout << "Emergency button clicked. Sending power out emergency call!\n"<<endl;
+
+}
+
+
+void MainWindow::on_pushButton_16_clicked()
+{
+    elevatorControlSystem.sendEmergencyCalls(EmergencyType::DOOR_OBSTACLE,ui->label_3);
+}
+
+
+void MainWindow::on_pushButton_17_clicked()
+{
+    elevatorControlSystem.sendEmergencyCalls(EmergencyType::EXTDOOR_OBSTACLE,ui->label_3);
+}
+
+
+void MainWindow::on_pushButton_9_clicked()
+{
+    Doors door;
+    door.doorOpen(true);
+}
+
+
+void MainWindow::on_pushButton_10_clicked()
+{
+    Doors door;
+    door.doorClose(true);
+}
+
+
+void MainWindow::on_pushButton_help_clicked()
+{
+    elevatorControlSystem.sendEmergencyCalls(EmergencyType::HELP,ui->label_3);
+}
+
